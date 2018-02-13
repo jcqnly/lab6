@@ -1,0 +1,38 @@
+body {
+  background-color: #351f04;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  zoom: 50%;
+  border: 20px auto 20px auto;
+}
+
+h1 {
+  color: #d15959;
+  text-align: center;
+  font-size: 5em;
+  font-family: 'Permanent Marker', cursive;
+}
+
+h2 {
+  color: #181201;
+  font-family: 'BioRhyme Expanded', serif;
+  font-size: 2em
+}
+
+.shadow {
+  text-shadow:
+  -1px -1px 0 #f0dede,
+  1px -1px 0 #f0dede,
+  -1px 1px 0 #f0dede,
+  1px 1px 0 #f0dede;
+}
+
+ul, li {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.25em;
+  color: #f7ca50;
+}
