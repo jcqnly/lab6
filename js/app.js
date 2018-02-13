@@ -1,9 +1,11 @@
 'use strict';
 
-var militaryHourArray = [];
-for(var i = 600; i <= 2000; i += 100) {
-  militaryHourArray.push(i);
-}
+// var militaryHourArray = [];
+// for(var i = 600; i <= 2000; i += 100) {
+//   militaryHourArray.push(i);
+// }
+
+var hour = ["6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm"];
 
 var pike = {
   name: "1st and Pike",
@@ -11,7 +13,7 @@ var pike = {
   maxCustPerHr: 65,
   avgCookiePerCust: 6.3,
   
-  custEachHrArray: [],//customers PER HOUR array,
+  custEachHrArray: [],//customers PER HOUR,
   randNumCust: function (minCustPerHr, maxCustPerHr) {
     for(var i = 0; i < 15; i++) {
       var custNum = Math.floor(Math.random() * (this.maxCustPerHr - this.minCustPerHr + 1)) + this.minCustPerHr;
@@ -20,8 +22,8 @@ var pike = {
     }
   },
 
-  cookiesEachHrArray: [],
-  cookiesEachHr: function() {//avgCookiesPerCust * random#ofCust
+  cookiesEachHrArray: [],//cookies per hr based on # of customers
+  cookiesEachHr: function() {
     this.randNumCust();
     for(var i = 0; i < this.custEachHrArray.length; i++) {
       var cookiesEveryHr = Math.round(this.avgCookiePerCust * this.custEachHrArray[i]);
@@ -30,14 +32,14 @@ var pike = {
     }
   },
 
-  render: function() {
+  render: function() {//add total cookies within this funct
     this.cookiesEachHr();
     var totalCookies = 0;
     var ulEl = document.getElementById('firstPike');
     for(var i = 0; i < this.custEachHrArray.length; i++) {
       totalCookies += this.cookiesEachHrArray[i];
       var liEl = document.createElement('li');
-      liEl.textContent = militaryHourArray[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
+      liEl.textContent = hour[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
       ulEl.appendChild(liEl);
     }
     var liEl = document.createElement('li');
@@ -78,7 +80,7 @@ var seaTacAir = {
     for(var i = 0; i < this.custEachHrArray.length; i++) {
       totalCookies += this.cookiesEachHrArray[i];
       var liEl = document.createElement('li');
-      liEl.textContent = militaryHourArray[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
+      liEl.textContent = hour[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
       ulEl.appendChild(liEl);
     }
     var liEl = document.createElement('li');
@@ -119,7 +121,7 @@ var seaCenter = {
     for(var i = 0; i < this.custEachHrArray.length; i++) {
       totalCookies += this.cookiesEachHrArray[i];
       var liEl = document.createElement('li');
-      liEl.textContent = militaryHourArray[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
+      liEl.textContent = hour[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
       ulEl.appendChild(liEl);
     }
     var liEl = document.createElement('li');
@@ -160,7 +162,7 @@ var capitolHill = {
     for(var i = 0; i < this.custEachHrArray.length; i++) {
       totalCookies += this.cookiesEachHrArray[i];
       var liEl = document.createElement('li');
-      liEl.textContent = militaryHourArray[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
+      liEl.textContent = hour[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
       ulEl.appendChild(liEl);
     }
     var liEl = document.createElement('li');
@@ -201,7 +203,7 @@ var alkiBeach = {
     for(var i = 0; i < this.custEachHrArray.length; i++) {
       totalCookies += this.cookiesEachHrArray[i];
       var liEl = document.createElement('li');
-      liEl.textContent = militaryHourArray[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
+      liEl.textContent = hour[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
       ulEl.appendChild(liEl);
     }
     var liEl = document.createElement('li');
