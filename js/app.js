@@ -15,35 +15,37 @@ var pike = {
   
   custEachHrArray: [],//customers PER HOUR,
   randNumCust: function (minCustPerHr, maxCustPerHr) {
-    for(var i = 0; i < 15; i++) {
+    for(var i = 0; i < hour.length; i++) {
       var custNum = Math.floor(Math.random() * (this.maxCustPerHr - this.minCustPerHr + 1)) + this.minCustPerHr;
       this.custEachHrArray.push(custNum);
-      console.log(custNum);
     }
   },
-
+  
   cookiesEachHrArray: [],//cookies per hr based on # of customers
   cookiesEachHr: function() {
     this.randNumCust();
-    for(var i = 0; i < this.custEachHrArray.length; i++) {
-      var cookiesEveryHr = Math.round(this.avgCookiePerCust * this.custEachHrArray[i]);
+    for(var i = 0; i < hour.length; i++) {
+      var cookiesEveryHr = Math.ceil(this.avgCookiePerCust * this.custEachHrArray[i]);
       this.cookiesEachHrArray.push(cookiesEveryHr);
-      console.log(cookiesEveryHr);
+      this.totalCookies += cookiesEveryHr;
     }
-  },
+  }, 
+  
+  totalCookies: 0, //Does it matter if this is before or after the function that uses this value?
 
   render: function() {//add total cookies within this funct
     this.cookiesEachHr();
-    var totalCookies = 0;
-    var ulEl = document.getElementById('firstPike');
-    for(var i = 0; i < this.custEachHrArray.length; i++) {
-      totalCookies += this.cookiesEachHrArray[i];
+    for(var i = 0; i < hour.length; i++) {
+      //create element
       var liEl = document.createElement('li');
+      //give it content
       liEl.textContent = hour[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
+      //append to parent
+      var ulEl = document.getElementById('firstPike');
       ulEl.appendChild(liEl);
     }
-    var liEl = document.createElement('li');
-    liEl.textContent = 'Total: ' + totalCookies + ' cookies';
+    liEl = document.createElement('li');
+    liEl.textContent = 'Total: ' + this.totalCookies + ' cookies';
     ulEl.appendChild(liEl);
   }
 };
@@ -54,37 +56,39 @@ var seaTacAir = {
   maxCustPerHr: 24,
   avgCookiePerCust: 1.2,
   
-  custEachHrArray: [],//customers PER HOUR array,
+  custEachHrArray: [],//customers PER HOUR,
   randNumCust: function (minCustPerHr, maxCustPerHr) {
-    for(var i = 0; i < 15; i++) {
+    for(var i = 0; i < hour.length; i++) {
       var custNum = Math.floor(Math.random() * (this.maxCustPerHr - this.minCustPerHr + 1)) + this.minCustPerHr;
       this.custEachHrArray.push(custNum);
-      console.log(custNum);
     }
   },
-
-  cookiesEachHrArray: [],
-  cookiesEachHr: function() {//avgCookiesPerCust * random#ofCust
+  
+  cookiesEachHrArray: [],//cookies per hr based on # of customers
+  cookiesEachHr: function() {
     this.randNumCust();
-    for(var i = 0; i < this.custEachHrArray.length; i++) {
-      var cookiesEveryHr = Math.round(this.avgCookiePerCust * this.custEachHrArray[i]);
+    for(var i = 0; i < hour.length; i++) {
+      var cookiesEveryHr = Math.ceil(this.avgCookiePerCust * this.custEachHrArray[i]);
       this.cookiesEachHrArray.push(cookiesEveryHr);
-      console.log(cookiesEveryHr);
+      this.totalCookies += cookiesEveryHr;
     }
-  },
+  }, 
+  
+  totalCookies: 0, //Does it matter if this is before or after the function that uses this value?
 
-  render: function() {
+  render: function() {//add total cookies within this funct
     this.cookiesEachHr();
-    var totalCookies = 0;
-    var ulEl = document.getElementById('seaTac');
-    for(var i = 0; i < this.custEachHrArray.length; i++) {
-      totalCookies += this.cookiesEachHrArray[i];
+    for(var i = 0; i < hour.length; i++) {
+      //create element
       var liEl = document.createElement('li');
+      //give it content
       liEl.textContent = hour[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
+      //append to parent
+      var ulEl = document.getElementById('seaTac');
       ulEl.appendChild(liEl);
     }
-    var liEl = document.createElement('li');
-    liEl.textContent = 'Total: ' + totalCookies + ' cookies';
+    liEl = document.createElement('li');
+    liEl.textContent = 'Total: ' + this.totalCookies + ' cookies';
     ulEl.appendChild(liEl);
   }
 };
@@ -95,37 +99,39 @@ var seaCenter = {
   maxCustPerHr: 38,
   avgCookiePerCust: 3.7,
   
-  custEachHrArray: [],//customers PER HOUR array,
+  custEachHrArray: [],//customers PER HOUR,
   randNumCust: function (minCustPerHr, maxCustPerHr) {
-    for(var i = 0; i < 15; i++) {
+    for(var i = 0; i < hour.length; i++) {
       var custNum = Math.floor(Math.random() * (this.maxCustPerHr - this.minCustPerHr + 1)) + this.minCustPerHr;
       this.custEachHrArray.push(custNum);
-      console.log(custNum);
     }
   },
-
-  cookiesEachHrArray: [],
-  cookiesEachHr: function() {//avgCookiesPerCust * random#ofCust
+  
+  cookiesEachHrArray: [],//cookies per hr based on # of customers
+  cookiesEachHr: function() {
     this.randNumCust();
-    for(var i = 0; i < this.custEachHrArray.length; i++) {
-      var cookiesEveryHr = Math.round(this.avgCookiePerCust * this.custEachHrArray[i]);
+    for(var i = 0; i < hour.length; i++) {
+      var cookiesEveryHr = Math.ceil(this.avgCookiePerCust * this.custEachHrArray[i]);
       this.cookiesEachHrArray.push(cookiesEveryHr);
-      console.log(cookiesEveryHr);
+      this.totalCookies += cookiesEveryHr;
     }
-  },
+  }, 
+  
+  totalCookies: 0, //Does it matter if this is before or after the function that uses this value?
 
-  render: function() {
+  render: function() {//add total cookies within this funct
     this.cookiesEachHr();
-    var totalCookies = 0;
-    var ulEl = document.getElementById('seaCen');
-    for(var i = 0; i < this.custEachHrArray.length; i++) {
-      totalCookies += this.cookiesEachHrArray[i];
+    for(var i = 0; i < hour.length; i++) {
+      //create element
       var liEl = document.createElement('li');
+      //give it content
       liEl.textContent = hour[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
+      //append to parent
+      var ulEl = document.getElementById('seaCen');
       ulEl.appendChild(liEl);
     }
-    var liEl = document.createElement('li');
-    liEl.textContent = 'Total: ' + totalCookies + ' cookies';
+    liEl = document.createElement('li');
+    liEl.textContent = 'Total: ' + this.totalCookies + ' cookies';
     ulEl.appendChild(liEl);
   }  
 };
@@ -136,37 +142,39 @@ var capitolHill = {
   maxCustPerHr: 38,
   avgCookiePerCust: 2.3,
   
-  custEachHrArray: [],//customers PER HOUR array,
+  custEachHrArray: [],//customers PER HOUR,
   randNumCust: function (minCustPerHr, maxCustPerHr) {
-    for(var i = 0; i < 15; i++) {
+    for(var i = 0; i < hour.length; i++) {
       var custNum = Math.floor(Math.random() * (this.maxCustPerHr - this.minCustPerHr + 1)) + this.minCustPerHr;
       this.custEachHrArray.push(custNum);
-      console.log(custNum);
     }
   },
-
-  cookiesEachHrArray: [],
-  cookiesEachHr: function() {//avgCookiesPerCust * random#ofCust
+  
+  cookiesEachHrArray: [],//cookies per hr based on # of customers
+  cookiesEachHr: function() {
     this.randNumCust();
-    for(var i = 0; i < this.custEachHrArray.length; i++) {
-      var cookiesEveryHr = Math.round(this.avgCookiePerCust * this.custEachHrArray[i]);
+    for(var i = 0; i < hour.length; i++) {
+      var cookiesEveryHr = Math.ceil(this.avgCookiePerCust * this.custEachHrArray[i]);
       this.cookiesEachHrArray.push(cookiesEveryHr);
-      console.log(cookiesEveryHr);
+      this.totalCookies += cookiesEveryHr;
     }
-  },
+  }, 
+  
+  totalCookies: 0, //Does it matter if this is before or after the function that uses this value?
 
-  render: function() {
+  render: function() {//add total cookies within this funct
     this.cookiesEachHr();
-    var totalCookies = 0;
-    var ulEl = document.getElementById('capHill');
-    for(var i = 0; i < this.custEachHrArray.length; i++) {
-      totalCookies += this.cookiesEachHrArray[i];
+    for(var i = 0; i < hour.length; i++) {
+      //create element
       var liEl = document.createElement('li');
+      //give it content
       liEl.textContent = hour[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
+      //append to parent
+      var ulEl = document.getElementById('capHill');
       ulEl.appendChild(liEl);
     }
-    var liEl = document.createElement('li');
-    liEl.textContent = 'Total: ' + totalCookies + ' cookies';
+    liEl = document.createElement('li');
+    liEl.textContent = 'Total: ' + this.totalCookies + ' cookies';
     ulEl.appendChild(liEl);
   }   
 };
@@ -177,37 +185,39 @@ var alkiBeach = {
   maxCustPerHr: 16,
   avgCookiePerCust: 4.6,
   
-  custEachHrArray: [],//customers PER HOUR array,
+  custEachHrArray: [],//customers PER HOUR,
   randNumCust: function (minCustPerHr, maxCustPerHr) {
-    for(var i = 0; i < 15; i++) {
+    for(var i = 0; i < hour.length; i++) {
       var custNum = Math.floor(Math.random() * (this.maxCustPerHr - this.minCustPerHr + 1)) + this.minCustPerHr;
       this.custEachHrArray.push(custNum);
-      console.log(custNum);
     }
   },
-
-  cookiesEachHrArray: [],
-  cookiesEachHr: function() {//avgCookiesPerCust * random#ofCust
+  
+  cookiesEachHrArray: [],//cookies per hr based on # of customers
+  cookiesEachHr: function() {
     this.randNumCust();
-    for(var i = 0; i < this.custEachHrArray.length; i++) {
-      var cookiesEveryHr = Math.round(this.avgCookiePerCust * this.custEachHrArray[i]);
+    for(var i = 0; i < hour.length; i++) {
+      var cookiesEveryHr = Math.ceil(this.avgCookiePerCust * this.custEachHrArray[i]);
       this.cookiesEachHrArray.push(cookiesEveryHr);
-      console.log(cookiesEveryHr);
+      this.totalCookies += cookiesEveryHr;
     }
-  },
+  }, 
+  
+  totalCookies: 0, //Does it matter if this is before or after the function that uses this value?
 
-  render: function() {
+  render: function() {//add total cookies within this funct
     this.cookiesEachHr();
-    var totalCookies = 0;
-    var ulEl = document.getElementById('alki');
-    for(var i = 0; i < this.custEachHrArray.length; i++) {
-      totalCookies += this.cookiesEachHrArray[i];
+    for(var i = 0; i < hour.length; i++) {
+      //create element
       var liEl = document.createElement('li');
+      //give it content
       liEl.textContent = hour[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
+      //append to parent
+      var ulEl = document.getElementById('alki');
       ulEl.appendChild(liEl);
     }
-    var liEl = document.createElement('li');
-    liEl.textContent = 'Total: ' + totalCookies + ' cookies';
+    liEl = document.createElement('li');
+    liEl.textContent = 'Total: ' + this.totalCookies + ' cookies';
     ulEl.appendChild(liEl);
   } 
 };
