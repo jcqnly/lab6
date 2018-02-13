@@ -18,6 +18,16 @@ var pike = {
       this.custEachHrArray.push(custNum);
       console.log(custNum);
     }
+  },
+
+  cookiesEachHrArray: [],
+  cookiesEachHr: function() {//avgCookiesPerCust * random#ofCust
+    this.randNumCust();
+    for(var i = 0; i < this.custEachHrArray.length; i++) {
+      var cookiesEveryHr = Math.round(this.avgCookiePerCust * this.custEachHrArray[i]);
+      this.cookiesEachHrArray.push(cookiesEveryHr);
+      console.log(cookiesEveryHr);
+    }
   }
 };
 
