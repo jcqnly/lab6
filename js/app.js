@@ -28,6 +28,21 @@ var pike = {
       this.cookiesEachHrArray.push(cookiesEveryHr);
       console.log(cookiesEveryHr);
     }
+  },
+
+  render: function() {
+    this.cookiesEachHr();
+    var totalCookies = 0;
+    var ulEl = document.getElementById('firstPike');
+    for(var i = 0; i < this.custEachHrArray.length; i++) {
+      totalCookies += this.cookiesEachHrArray[i];
+      var liEl = document.createElement('li');
+      liEl.textContent = militaryHourArray[i] + ': ' + this.cookiesEachHrArray[i] + ' cookies';
+      ulEl.appendChild(liEl);
+    }
+    var liEl = document.createElement('li');
+    liEl.textContent = 'Total: ' + totalCookies + ' cookies';
+    ulEl.appendChild(liEl);
   }
 };
 
@@ -38,3 +53,4 @@ var pike = {
 // var capHill = {};
 
 // var alki = {};
+pike.render();
