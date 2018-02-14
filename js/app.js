@@ -4,9 +4,8 @@ var hour = ["6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3
 
 var allStands = [];
 
-//accessing table in the DOM
 var standsTable = document.getElementById('allStands');
-//object constructor
+
 function Stand(name, minCustPerHr, maxCustPerHr, avgCookiePerCust) {
   this.name = name;
   this.minCustPerHr = minCustPerHr;
@@ -15,17 +14,19 @@ function Stand(name, minCustPerHr, maxCustPerHr, avgCookiePerCust) {
   this.custEachHrArray = [];
   this.cookiesEachHrArray = [];
   this.totalCookies = 0;
+  this.totalCookiesPerStand = 0;
   allStands.push(this);
   this.randNumCust();
   this.cookiesEachHr();
   this.render();
 };
-//this is a method because it is part of the constructor
+
 Stand.prototype.randNumCust = function() {
   for(var i = 0; i < hour.length; i++) {
     this.custEachHrArray.push(Math.floor(Math.random() * (this.maxCustPerHr - this.minCustPerHr + 1)) + this.minCustPerHr);
   }
 };//check with allStands[0].custEachHrArray
+
 Stand.prototype.cookiesEachHr = function() {
   this.randNumCust();
   for(var i = 0; i < hour.length; i++) {
@@ -42,11 +43,18 @@ Stand.prototype.render = function() {
   tdEl.textContent = this.name; //td content for name of stand
   trEl.appendChild(tdEl);//append the td
   
-  for(var i = 0; i < hour.length; i++) {
+  for(var i = 0; i < hour.length - 1; i++) {
     tdEl = document.createElement('td'); //create td
     tdEl.textContent = this.cookiesEachHrArray[i];//for every hour
     trEl.appendChild(tdEl);
   }
+  //sum total of daily cookies per store
+  for(var i = 0; i < hour.length; i++) {
+    this.totalCookiesPerStand += this.cookiesEachHrArray[i];
+  }
+  tdEl = document.createElement('td');
+  tdEl.textContent = this.totalCookiesPerStand;
+  trEl.appendChild(tdEl);
   standsTable.appendChild(trEl);
 };
 
@@ -55,21 +63,22 @@ function makeHeaderRow() {//table header
   var thEl = document.createElement('th'); //create th
   thEl.textContent = 'Name'; //give th content, stand name
   trEl.appendChild(thEl);
-  
   for(var i = 0; i < hour.length; i++) {
     thEl = document.createElement('th'); 
     thEl.textContent = hour[i];
     trEl.appendChild(thEl);
   }
+  thEl.textContent = 'Total';
+  trEl.appendChild(thEl);
   standsTable.appendChild(trEl);
 }
 
-function TotPerHr() {
+function footerRow() {//Would this be considered my footer
   var trEl = document.createElement('tr'); //create tr
   var tdEl = document.createElement('td'); //create td
   tdEl.textContent = 'Total'; //td content for name of stand
   trEl.appendChild(tdEl);//append the td
-  for(var i = 0; i < hour.length; i++) {
+  for(var i = 0; i < hour.length - 1; i++) {
     var total = 0;
     for(var j = 0; j < allStands.length; j++) {
       total += allStands[j].cookiesEachHrArray[i];
@@ -77,7 +86,7 @@ function TotPerHr() {
     tdEl = document.createElement('td');
     tdEl.textContent = total;
     trEl.appendChild(tdEl);
-    console.log(total, 'outer loop')
+    console.log(total);
   } 
   standsTable.appendChild(trEl);
 }
@@ -89,5 +98,4 @@ new Stand('SeaTac Airport', 3, 24, 1.2);
 new Stand('Seattle Center', 11, 38, 3.7);
 new Stand('Capitol Hill', 20, 38, 2.3);
 new Stand('Alki', 2, 16, 4.6);
-console.table(allStands);
-TotPerHr();
+footerRow();//Would this be considered my footer
