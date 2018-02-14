@@ -13,8 +13,10 @@ img {
 h1 {
   color: #d15959;
   text-align: center;
-  font-size: 5em;
+  font-size: 4em;
   font-family: 'Permanent Marker', cursive;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .shadow {
@@ -33,7 +35,8 @@ ul, li {
 }
 
 table {
-  border-spacing: 5px;
+  border-spacing: 10px;
+  margin-bottom: 50px;
 }
 
 th {
@@ -44,16 +47,16 @@ th {
 
 tr {
   color: #000000;
-  font-family: 'BioRhyme Expanded', serif;
-  font-size: 1em
+  font-family: 'Kreon', serif;
+  font-size: 1.5em;
 }
 
 td {
   text-align: center;
   list-style: none;
-  font-family: 'Raleway', sans-serif;
-  font-size: 1.25em;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
   color: #f7ca50;
   background-color: #170d02;
   border-radius: 10px;
+  padding: 10px 20px 10px 20px;
 }
