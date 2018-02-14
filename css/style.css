@@ -1,5 +1,5 @@
 body {
-  background-color: #351f04;
+  background-color: #68451a;
 }
 
 img {
@@ -17,12 +17,6 @@ h1 {
   font-family: 'Permanent Marker', cursive;
 }
 
-h2 {
-  color: #181201;
-  font-family: 'BioRhyme Expanded', serif;
-  font-size: 2em
-}
-
 .shadow {
   text-shadow:
   -1px -1px 0 #f0dede,
@@ -36,4 +30,30 @@ ul, li {
   font-family: 'Raleway', sans-serif;
   font-size: 1.25em;
   color: #f7ca50;
+}
+
+table {
+  border-spacing: 5px;
+}
+
+th {
+  text-align: middle;
+  background-color: #d15959;
+  border-radius: 10px;
+}
+
+tr {
+  color: #000000;
+  font-family: 'BioRhyme Expanded', serif;
+  font-size: 1em
+}
+
+td {
+  text-align: center;
+  list-style: none;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.25em;
+  color: #f7ca50;
+  background-color: #170d02;
+  border-radius: 10px;
 }
