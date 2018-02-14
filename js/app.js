@@ -6,7 +6,7 @@ var allStands = [];
 
 //accessing table in the DOM
 var standsTable = document.getElementById('allStands');
-
+//object constructor
 function Stand(name, minCustPerHr, maxCustPerHr, avgCookiePerCust) {
   this.name = name;
   this.minCustPerHr = minCustPerHr;
@@ -20,13 +20,12 @@ function Stand(name, minCustPerHr, maxCustPerHr, avgCookiePerCust) {
   this.cookiesEachHr();
   this.render();
 };
-
+//this is a method because it is part of the constructor
 Stand.prototype.randNumCust = function() {
   for(var i = 0; i < hour.length; i++) {
     this.custEachHrArray.push(Math.floor(Math.random() * (this.maxCustPerHr - this.minCustPerHr + 1)) + this.minCustPerHr);
   }
-};//check with allStands[0].custEachArray
-
+};//check with allStands[0].custEachHrArray
 Stand.prototype.cookiesEachHr = function() {
   this.randNumCust();
   for(var i = 0; i < hour.length; i++) {
@@ -36,20 +35,20 @@ Stand.prototype.cookiesEachHr = function() {
 };
 
 Stand.prototype.render = function() {
+  //add each unique values to the cell along the row
   var trEl = document.createElement('tr'); //create tr
-
+  
   var tdEl = document.createElement('td'); //create td
   tdEl.textContent = this.name; //td content for name of stand
   trEl.appendChild(tdEl);//append the td
-
+  
   for(var i = 0; i < hour.length; i++) {
     tdEl = document.createElement('td'); //create td
-    tdEl.textContent = this.cookiesEachHrArray[i];
+    tdEl.textContent = this.cookiesEachHrArray[i];//for every hour
     trEl.appendChild(tdEl);
   }
   standsTable.appendChild(trEl);
 };
-
 
 function makeHeaderRow() {//table header
   var trEl = document.createElement('tr'); // create tr
@@ -70,19 +69,25 @@ function TotPerHr() {
   var tdEl = document.createElement('td'); //create td
   tdEl.textContent = 'Total'; //td content for name of stand
   trEl.appendChild(tdEl);//append the td
-
+  for(var i = 0; i < hour.length; i++) {
+    var total = 0;
+    for(var j = 0; j < allStands.length; j++) {
+      total += allStands[j].cookiesEachHrArray[i];
+    }
+    tdEl = document.createElement('td');
+    tdEl.textContent = total;
+    trEl.appendChild(tdEl);
+    console.log(total, 'outer loop')
+  } 
   standsTable.appendChild(trEl);
-  // for(var i = 0; i < hour.length; i++){
-  //   tdEl = document.createElement('td');
-  //   tdEl.textContent = 'Hello';
-  // }  
 }
-makeHeaderRow();
 
+makeHeaderRow();
+//Instantiate constructor for each est of inputs
 new Stand('1st and Pike', 23, 65, 6.3);
 new Stand('SeaTac Airport', 3, 24, 1.2);
 new Stand('Seattle Center', 11, 38, 3.7);
 new Stand('Capitol Hill', 20, 38, 2.3);
 new Stand('Alki', 2, 16, 4.6);
-
+console.table(allStands);
 TotPerHr();
