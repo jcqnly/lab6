@@ -19,7 +19,7 @@ function handleStoreSubmit(event) {
   var maxCustPerHrNew = event.target.maxCustPerHr.value;
   var avgCookiePerCustNew = event.target.avgCookiePerCust.value;
 
-  document.getElementById(allStands).deleteRow(0);
+ 
 
   var newStoreInfo = new Stand(storeNew, minCustPerHrNew, maxCustPerHrNew, avgCookiePerCustNew);
 
