@@ -1,10 +1,32 @@
 'use strict';
 
 var hour = ["6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm"];
-
 var allStands = [];
-
 var standsTable = document.getElementById('allStands');
+var storeForm = document.getElementById('storeForm');
+
+//event listener for store submission form
+storeForm.addEventListener('submit', handleStoreSubmit);
+
+function handleStoreSubmit(event) {
+  event.preventDefault();
+  //Prevent empty submission
+  if (!event.target.store.value || !event.target.minCustPerHr.value || !event.target.maxCustPerHr.value || !event.target.avgCookiePerCust.value) {
+    return alert('Fields cannot be empty!');
+  }
+  var storeNew = event.target.store.value;
+  var minCustPerHrNew = event.target.minCustPerHr.value;
+  var maxCustPerHrNew = event.target.maxCustPerHr.value;
+  var avgCookiePerCustNew = event.target.avgCookiePerCust.value;
+
+  var newStoreInfo = new Stand(storeNew, minCustPerHrNew, maxCustPerHrNew, avgCookiePerCustNew);
+
+  //empty the form fields
+  event.target.store.value = null;
+  event.target.minCustPerHr.value = null;
+  event.target.maxCustPerHr.value = null;
+  event.target.avgCookiePerCust.value = null;
+}
 
 function Stand(name, minCustPerHr, maxCustPerHr, avgCookiePerCust) {
   this.name = name;
@@ -13,7 +35,6 @@ function Stand(name, minCustPerHr, maxCustPerHr, avgCookiePerCust) {
   this.avgCookiePerCust = avgCookiePerCust;
   this.custEachHrArray = [];
   this.cookiesEachHrArray = [];
-  this.totalCookies = 0;
   this.totalCookiesPerStand = 0;
   allStands.push(this);
   this.randNumCust();
@@ -30,8 +51,8 @@ Stand.prototype.randNumCust = function() {
 Stand.prototype.cookiesEachHr = function() {
   this.randNumCust();
   for(var i = 0; i < hour.length; i++) {
-    this.cookiesEachHrArray.push(Math.ceil(this.avgCookiePerCust * this.custEachHrArray[i]));
-    this.totalCookies += Math.ceil(this.avgCookiePerCust * this.custEachHrArray[i]);
+    var cookiesOneHr = Math.ceil(this.avgCookiePerCust * this.custEachHrArray[i]);
+    this.cookiesEachHrArray.push(cookiesOneHr);
   }
 };
 
@@ -43,7 +64,7 @@ Stand.prototype.render = function() {
   tdEl.textContent = this.name; //td content for name of stand
   trEl.appendChild(tdEl);//append the td
   
-  for(var i = 0; i < hour.length - 1; i++) {
+  for(var i = 0; i < hour.length; i++) {
     tdEl = document.createElement('td'); //create td
     tdEl.textContent = this.cookiesEachHrArray[i];//for every hour
     trEl.appendChild(tdEl);
@@ -68,17 +89,21 @@ function makeHeaderRow() {//table header
     thEl.textContent = hour[i];
     trEl.appendChild(thEl);
   }
+  standsTable.appendChild(trEl);
+
+  var thEl = document.createElement('th');
   thEl.textContent = 'Total';
   trEl.appendChild(thEl);
   standsTable.appendChild(trEl);
 }
 
-function footerRow() {//Would this be considered my footer
+function footerRow() {
   var trEl = document.createElement('tr'); //create tr
   var tdEl = document.createElement('td'); //create td
   tdEl.textContent = 'Total'; //td content for name of stand
   trEl.appendChild(tdEl);//append the td
-  for(var i = 0; i < hour.length - 1; i++) {
+  var totalOfTotal = 0;
+  for(var i = 0; i < hour.length; i++) {
     var total = 0;
     for(var j = 0; j < allStands.length; j++) {
       total += allStands[j].cookiesEachHrArray[i];
@@ -86,8 +111,13 @@ function footerRow() {//Would this be considered my footer
     tdEl = document.createElement('td');
     tdEl.textContent = total;
     trEl.appendChild(tdEl);
-    console.log(total);
+
+    totalOfTotal += total; //adding the total row
+    console.log(totalOfTotal);
   } 
+  tdEl = document.createElement('td');
+  tdEl.textContent = totalOfTotal;
+  trEl.appendChild(tdEl);
   standsTable.appendChild(trEl);
 }
 
@@ -98,4 +128,6 @@ new Stand('SeaTac Airport', 3, 24, 1.2);
 new Stand('Seattle Center', 11, 38, 3.7);
 new Stand('Capitol Hill', 20, 38, 2.3);
 new Stand('Alki', 2, 16, 4.6);
-footerRow();//Would this be considered my footer
+footerRow();
+
+console.table(allStands);

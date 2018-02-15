@@ -27,36 +27,69 @@ h1 {
   1px 1px 0 #f0dede;
 }
 
-ul, li {
+ul, li  {
   list-style: none;
-  font-family: 'Raleway', sans-serif;
-  font-size: 1.25em;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
   color: #f7ca50;
 }
 
+fieldset {
+  border: 2px solid #130901;
+  border-radius: 20px;
+  padding: 10px 0 20px 10px;
+  margin-bottom: 30px;
+}
+
+legend {
+  color: #130901;
+  font-family: 'Kreon', serif;
+  font-size: 1em;
+  background-color: #f7ca50;
+  border: 1px solid #130901;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+input {
+  border: 3px solid #130901;
+  border-radius: 8px;
+  padding: 5px;
+  
+}
+
 table {
-  border-spacing: 10px;
+  border-spacing: 5px;
   margin-bottom: 50px;
 }
 
 th {
   text-align: middle;
+  font-size: 20px;
   background-color: #d15959;
+  letter-spacing: 1px;
   border-radius: 10px;
+  border: 1px solid #130901;
 }
 
-tr {
-  color: #000000;
+tr, label {
+  color: #130901;
   font-family: 'Kreon', serif;
-  font-size: 1.5em;
+  font-size: 20px;
+
 }
 
 td {
   text-align: center;
   list-style: none;
-  font-family: 'Yanone Kaffeesatz', sans-serif;
-  color: #f7ca50;
-  background-color: #170d02;
-  border-radius: 10px;
-  padding: 10px 20px 10px 20px;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 1px;
+  font-size: 20px;
+  color:#170d02;
+  background-color: #f7ca50;
+  border-radius: 5px;
+  border: 1px solid #130901;
+  padding: 5px 15px 5px 15px;
 }
