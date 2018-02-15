@@ -129,5 +129,3 @@ new Stand('Seattle Center', 11, 38, 3.7);
 new Stand('Capitol Hill', 20, 38, 2.3);
 new Stand('Alki', 2, 16, 4.6);
 footerRow();
-
-console.table(allStands);
