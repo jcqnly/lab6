@@ -4,7 +4,6 @@ var hour = ["6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3
 var allStands = [];
 var standsTable = document.getElementById('allStands');
 var storeForm = document.getElementById('storeForm');
-
 //event listener for store submission form
 storeForm.addEventListener('submit', handleStoreSubmit);
 
@@ -14,20 +13,19 @@ function handleStoreSubmit(event) {
   if (!event.target.store.value || !event.target.minCustPerHr.value || !event.target.maxCustPerHr.value || !event.target.avgCookiePerCust.value) {
     return alert('Fields cannot be empty!');
   }
-  var storeNew = event.target.store.value;
-  var minCustPerHrNew = event.target.minCustPerHr.value;
-  var maxCustPerHrNew = event.target.maxCustPerHr.value;
-  var avgCookiePerCustNew = event.target.avgCookiePerCust.value;
-
- 
-
-  var newStoreInfo = new Stand(storeNew, minCustPerHrNew, maxCustPerHrNew, avgCookiePerCustNew);
-
+  
+  // var deleteFooter = getElementById('footer');
+  document.getElementById('footer').innerHTML = '';
+  
+  var newStoreInfo = new Stand(event.target.store.value, event.target.minCustPerHr.value, event.target.maxCustPerHr.value, event.target.avgCookiePerCust.value);
+  
   //empty the form fields
   event.target.store.value = null;
   event.target.minCustPerHr.value = null;
   event.target.maxCustPerHr.value = null;
   event.target.avgCookiePerCust.value = null;
+  // newStoreInfo.render();
+  footerRow();
 }
 
 function Stand(name, minCustPerHr, maxCustPerHr, avgCookiePerCust) {
@@ -101,6 +99,7 @@ function makeHeaderRow() {//table header
 
 function footerRow() {
   var trEl = document.createElement('tr'); //create tr
+  trEl.setAttribute('id', 'footer');
   var tdEl = document.createElement('td'); //create td
   tdEl.textContent = 'Total'; //td content for name of stand
   trEl.appendChild(tdEl);//append the td
