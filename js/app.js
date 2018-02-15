@@ -19,6 +19,8 @@ function handleStoreSubmit(event) {
   var maxCustPerHrNew = event.target.maxCustPerHr.value;
   var avgCookiePerCustNew = event.target.avgCookiePerCust.value;
 
+ 
+
   var newStoreInfo = new Stand(storeNew, minCustPerHrNew, maxCustPerHrNew, avgCookiePerCustNew);
 
   //empty the form fields
@@ -113,7 +115,6 @@ function footerRow() {
     trEl.appendChild(tdEl);
 
     totalOfTotal += total; //adding the total row
-    console.log(totalOfTotal);
   } 
   tdEl = document.createElement('td');
   tdEl.textContent = totalOfTotal;
@@ -129,5 +130,3 @@ new Stand('Seattle Center', 11, 38, 3.7);
 new Stand('Capitol Hill', 20, 38, 2.3);
 new Stand('Alki', 2, 16, 4.6);
 footerRow();
-
-console.table(allStands);
