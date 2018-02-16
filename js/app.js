@@ -4,29 +4,6 @@ var hour = ["6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3
 var allStands = [];
 var standsTable = document.getElementById('allStands');
 var storeForm = document.getElementById('storeForm');
-//event listener for store submission form
-storeForm.addEventListener('submit', handleStoreSubmit);
-
-function handleStoreSubmit(event) {
-  event.preventDefault();
-  //Prevent empty submission
-  if (!event.target.store.value || !event.target.minCustPerHr.value || !event.target.maxCustPerHr.value || !event.target.avgCookiePerCust.value) {
-    return alert('Fields cannot be empty!');
-  }
-  
-  // var deleteFooter = getElementById('footer');
-  document.getElementById('footer').innerHTML = '';
-  
-  var newStoreInfo = new Stand(event.target.store.value, event.target.minCustPerHr.value, event.target.maxCustPerHr.value, event.target.avgCookiePerCust.value);
-  
-  //empty the form fields
-  event.target.store.value = null;
-  event.target.minCustPerHr.value = null;
-  event.target.maxCustPerHr.value = null;
-  event.target.avgCookiePerCust.value = null;
-  // newStoreInfo.render();
-  footerRow();
-}
 
 function Stand(name, minCustPerHr, maxCustPerHr, avgCookiePerCust) {
   this.name = name;
@@ -90,7 +67,7 @@ function makeHeaderRow() {//table header
     trEl.appendChild(thEl);
   }
   standsTable.appendChild(trEl);
-
+  
   var thEl = document.createElement('th');
   thEl.textContent = 'Total';
   trEl.appendChild(thEl);
@@ -101,7 +78,9 @@ function footerRow() {
   var trEl = document.createElement('tr'); //create tr
   trEl.setAttribute('id', 'footer');
   var tdEl = document.createElement('td'); //create td
-  tdEl.textContent = 'Total'; //td content for name of stand
+  // trEl.id = 'footer';
+  trEl.setAttribute('id', 'footer');
+  tdEl.textContent = 'Total';
   trEl.appendChild(tdEl);//append the td
   var totalOfTotal = 0;
   for(var i = 0; i < hour.length; i++) {
@@ -112,7 +91,7 @@ function footerRow() {
     tdEl = document.createElement('td');
     tdEl.textContent = total;
     trEl.appendChild(tdEl);
-
+    
     totalOfTotal += total; //adding the total row
   } 
   tdEl = document.createElement('td');
@@ -129,3 +108,33 @@ new Stand('Seattle Center', 11, 38, 3.7);
 new Stand('Capitol Hill', 20, 38, 2.3);
 new Stand('Alki', 2, 16, 4.6);
 footerRow();
+
+//event triggger
+function handleStoreSubmit(event) {
+  event.preventDefault();
+  //Prevent empty submission
+  if (!event.target.store.value || !event.target.minCustPerHr.value || !event.target.maxCustPerHr.value || !event.target.avgCookiePerCust.value) {
+    return alert('Fields cannot be empty!');
+  }
+  var location = event.target.store.value;
+  var min = parseInt(event.target.minCustPerHr.value);
+  var max = parseInt(event.target.maxCustPerHr.value);
+  var avg = parseInt(event.target.avgCookiePerCust.value);
+
+  clearTable();
+
+  var newStoreInfo = new Stand(location, min, max, avg);
+  
+  //empty the form fields
+  event.target.store.value = null;
+  event.target.minCustPerHr.value = null;
+  event.target.maxCustPerHr.value = null;
+  event.target.avgCookiePerCust.value = null;
+  footerRow();
+}
+
+function clearTable() {
+  document.getElementById('footer').innerHTML = '';
+}
+//event listener for store submission form
+storeForm.addEventListener('submit', handleStoreSubmit);
