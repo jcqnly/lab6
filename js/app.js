@@ -76,6 +76,7 @@ function makeHeaderRow() {//table header
 
 function footerRow() {
   var trEl = document.createElement('tr'); //create tr
+  trEl.setAttribute('id', 'footer');
   var tdEl = document.createElement('td'); //create td
   // trEl.id = 'footer';
   trEl.setAttribute('id', 'footer');
