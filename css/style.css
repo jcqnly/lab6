@@ -1,13 +1,72 @@
 body {
   background-color: #68451a;
+  padding: 0;
+  margin: 0;
 }
 
-img {
+#title {
+  background-color: white;
+  width: 100%;
+  margin-top: 30px;
+  padding-left: 30px;
+  padding-left: 50px;
+}
+
+#about{
+  text-align: center;
+  margin-top: 50px;
+}
+
+#locations {
+  margin:  30px auto;
+  width: 1000px;
+  text-align:center;
+}
+
+.col1 {
+  float: left;
+}
+.col2 {
+  float: right;
+}
+.col3 {
+  margin: auto;
+}
+
+#hours, #merch, #product, #reviews {
+  background-color: white;
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  border-radius: 20px;
+  padding-bottom: 50px;
+}
+
+a {
+  text-decoration: none;
+  color:#f7ca50;
+}
+a:hover {
+  color: #130901;
+}
+
+p {
+  color: #130901;
+  font-family: 'Kreon', serif;
+  font-size: 60px;
+  padding: 10px 60px 20px 60px;
+  margin: 0;
+}
+
+.resize {
+  width: 200px;
+  height: auto;
+}
+
+img.center {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  zoom: 50%;
-  border: 20px auto 20px auto;
 }
 
 h1 {
@@ -15,8 +74,7 @@ h1 {
   text-align: center;
   font-size: 4em;
   font-family: 'Permanent Marker', cursive;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  display: inline;
 }
 
 .shadow {
@@ -31,6 +89,9 @@ ul, li  {
   list-style: none;
   font-family: 'Yanone Kaffeesatz', sans-serif;
   color: #f7ca50;
+  font-size: 1.5em;
+  display: inline;
+  padding: 20px;
 }
 
 fieldset {
@@ -74,11 +135,10 @@ th {
   border: 1px solid #130901;
 }
 
-tr, label {
+tr, label, p {
   color: #130901;
   font-family: 'Kreon', serif;
   font-size: 20px;
-
 }
 
 td {
