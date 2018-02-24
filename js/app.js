@@ -1,6 +1,6 @@
 'use strict';
 
-var hour = ["6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm"];
+var hour = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 var allStands = [];
 var standsTable = document.getElementById('allStands');
 var storeForm = document.getElementById('storeForm');
@@ -17,7 +17,7 @@ function Stand(name, minCustPerHr, maxCustPerHr, avgCookiePerCust) {
   this.randNumCust();
   this.cookiesEachHr();
   this.render();
-};
+}
 
 Stand.prototype.randNumCust = function() {
   for(var i = 0; i < hour.length; i++) {
@@ -36,19 +36,19 @@ Stand.prototype.cookiesEachHr = function() {
 Stand.prototype.render = function() {
   //add each unique values to the cell along the row
   var trEl = document.createElement('tr'); //create tr
-  
+
   var tdEl = document.createElement('td'); //create td
   tdEl.textContent = this.name; //td content for name of stand
   trEl.appendChild(tdEl);//append the td
-  
+
   for(var i = 0; i < hour.length; i++) {
     tdEl = document.createElement('td'); //create td
     tdEl.textContent = this.cookiesEachHrArray[i];//for every hour
     trEl.appendChild(tdEl);
   }
   //sum total of daily cookies per store
-  for(var i = 0; i < hour.length; i++) {
-    this.totalCookiesPerStand += this.cookiesEachHrArray[i];
+  for(var j = 0; j < hour.length; j++) {
+    this.totalCookiesPerStand += this.cookiesEachHrArray[j];
   }
   tdEl = document.createElement('td');
   tdEl.textContent = this.totalCookiesPerStand;
@@ -62,14 +62,14 @@ function makeHeaderRow() {//table header
   thEl.textContent = 'Name'; //give th content, stand name
   trEl.appendChild(thEl);
   for(var i = 0; i < hour.length; i++) {
-    thEl = document.createElement('th'); 
+    thEl = document.createElement('th');
     thEl.textContent = hour[i];
     trEl.appendChild(thEl);
   }
   standsTable.appendChild(trEl);
-  
-  var thEl = document.createElement('th');
-  thEl.textContent = 'Total';
+
+  var thElTotal = document.createElement('th');
+  thElTotal.textContent = 'Total';
   trEl.appendChild(thEl);
   standsTable.appendChild(trEl);
 }
@@ -91,9 +91,9 @@ function footerRow() {
     tdEl = document.createElement('td');
     tdEl.textContent = total;
     trEl.appendChild(tdEl);
-    
+
     totalOfTotal += total; //adding the total row
-  } 
+  }
   tdEl = document.createElement('td');
   tdEl.textContent = totalOfTotal;
   trEl.appendChild(tdEl);
@@ -123,8 +123,8 @@ function handleStoreSubmit(event) {
 
   clearTable();
 
-  var newStoreInfo = new Stand(location, min, max, avg);
-  
+  new Stand(location, min, max, avg);
+
   //empty the form fields
   event.target.store.value = null;
   event.target.minCustPerHr.value = null;
